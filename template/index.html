@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
+    <title>Application</title>
+</head>
+<body>
+    <section id="container">
+        <h3>Application TODO</h3>
+        <form action="create" method="post">
+            <input type="text" name="txt" id="in" required placeholder="add comment">
+            <input type="submit" value="Add">
+        </form>
+        <form action="delete">
+            <button type="submit">Delete All</button>
+        </form>
+        {%if todolist|length!=0 %}
+            {% for t in todolist %}
+                <h4><a href="update/{{t._id}}">{{t.text}}</a></h4>
+            {% endfor %}
+        {% else %}
+            <h3 color="red">There are no comments yet</h3>
+        {% endif %}
+    </section>
+</body>
+</html>
